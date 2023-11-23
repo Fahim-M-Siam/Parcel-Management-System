@@ -1,12 +1,12 @@
 // @ts-nocheck
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
+import MainLayout from "../Layout/MainLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: <MainLayout></MainLayout>,
     children: [
       {
         path: "/",

@@ -1,8 +1,11 @@
 // @ts-nocheck
+import Banner from "../../components/Banner/Banner";
+
+// @ts-nocheck
 const Home = () => {
   return (
     <div>
-      <h2>This Is home</h2>
+      <Banner></Banner>
     </div>
   );
 };

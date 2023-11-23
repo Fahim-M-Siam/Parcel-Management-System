@@ -1,10 +1,12 @@
 // @ts-nocheck
 import { Outlet } from "react-router-dom";
 import Footer from "../Pages/Shared/Footer/Footer";
+import Navbar from "../Pages/Shared/Navbar/Navbar";
 
-const Main = () => {
+const MainLayout = () => {
   return (
     <div>
+      <Navbar></Navbar>
       <div className="max-w-7xl mx-auto">
         <Outlet></Outlet>
       </div>
@@ -13,4 +15,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainLayout;
