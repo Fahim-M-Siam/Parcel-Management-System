@@ -1,4 +1,5 @@
 // @ts-nocheck
+import AboutUs from "../../components/AboutUs";
 import Banner from "../../components/Banner/Banner";
 import Features from "../../components/Features";
 import Statistics from "../../components/Satistics";
@@ -12,6 +13,7 @@ const Home = () => {
       <Features></Features>
       <Statistics></Statistics>
       <TopDeliveryMen></TopDeliveryMen>
+      <AboutUs></AboutUs>
     </div>
   );
 };
