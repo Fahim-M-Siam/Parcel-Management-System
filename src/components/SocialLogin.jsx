@@ -9,7 +9,31 @@ const SocialLogin = () => {
   const { googleLogin } = useAuth();
   const handleSocialLogin = (media) => {
     media()
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        const isGoogleLogin =
+          userCredential.additionalUserInfo?.providerId === "google.com";
+
+        const userType = isGoogleLogin && "User";
+
+        const updatedUser = {
+          name: user.displayName,
+          email: user.email,
+          img: user.photoURL,
+          password: "",
+          type: userType,
+        };
+
+        // axios
+        //   .post("https://taste-harmony-cafe-server.vercel.app/users", updatedUser)
+        //   .then((response) => {
+        //     console.log(response.data);
+        //   })
+        //   .catch((error) => {
+        //     console.error(error);
+        //   });
+
         toast.success("Registration has been successful");
         Navigate(location?.state ? location.state : "/");
       })
