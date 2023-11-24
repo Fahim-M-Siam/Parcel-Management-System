@@ -8,23 +8,23 @@ import SocialLogin from "../components/SocialLogin";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
-// import axios from "axios";
+import { imageUpload } from "../api/utils";
+import axiosSecure from "../Hooks/useAxiosSecure";
+
 const Register = () => {
   const { createUser, logOut } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const toastId = toast.loading("Registering..");
     const form = event.target;
     // inputvalues
     const name = form.name.value;
     const email = form.email.value;
-    const img = form.img.value;
-    // const type = form.img.value;
+    const type = form.type.value;
     const password = form.password.value;
-
-    // const user = { name, email, img, password, type };
+    const imageFile = form.image.files[0];
 
     // validations
     if (password.length < 6) {
@@ -38,34 +38,41 @@ const Register = () => {
       return;
     }
 
-    // creatingUser
-    createUser(email, password)
-      .then((user) => {
-        toast.success("Registration has been succesful", { id: toastId });
-        logOut();
-        // update profile
-        updateProfile(user.user, {
-          displayName: name,
-          photoURL: img,
-        }).then(() => {
-          toast.success("Profile Updated");
+    try {
+      const imageData = await imageUpload(imageFile);
+      const image = imageData?.data?.display_url;
+      // const user = { name, email, image, type };
+      // creatingUser
+      await createUser(email, password)
+        .then((user) => {
+          toast.success("Registration has been succesful", { id: toastId });
+          logOut();
+          // update profile
+          updateProfile(user.user, {
+            displayName: name,
+            photoURL: image,
+          }).then(() => {
+            toast.success("Profile Updated");
+          });
+          navigate("/login");
+        })
+        .catch((error) => {
+          toast.error("Registration failed", { id: toastId });
+          console.log(error);
         });
-        navigate("/login");
-      })
-      .catch((error) => {
-        toast.error("Registration failed", { id: toastId });
-        console.log(error);
-      });
 
-    // sendin user information to backend
-    // axios
-    //   .post("https://taste-harmony-cafe-server.vercel.app/users", user)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+      // sendin user information to backend
+      axiosSecure
+        .post("/users", { name, email, image, type })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="hero min-h-screen">
@@ -110,26 +117,18 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Image URL</span>
-              </label>
-              <input
-                type="text"
-                placeholder="image url"
-                name="img"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
                 <span className="label-text">User Type</span>
               </label>
-              <select className="select select-bordered w-full max-w-xs">
-                <option disabled selected>
+              <select
+                name="type"
+                required
+                className="select select-bordered w-full max-w-xs"
+              >
+                <option disabled value="default">
                   Your Type
                 </option>
-                <option>Delivery Men</option>
-                <option>User</option>
+                <option value="DeliveryMen">Delivery Men</option>
+                <option value="User">User</option>
               </select>
             </div>
             <div className="form-control relative">
@@ -149,6 +148,19 @@ const Register = () => {
               >
                 {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
               </span>
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Select Image</span>
+              </label>
+              <input
+                type="file"
+                placeholder="image"
+                name="image"
+                required
+                accept="image/*"
+                id="image"
+              />
             </div>
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-outline bg-[#FF715A]">

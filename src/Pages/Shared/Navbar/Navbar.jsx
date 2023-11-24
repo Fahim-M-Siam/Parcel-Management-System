@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { IoIosNotifications } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { FaUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -105,14 +106,17 @@ const Navbar = () => {
             Dashboard
           </NavLink>
           <NavLink
-            to="/notification"
+            to="/dashboard/myParcels"
             className={({ isActive }) =>
               isActive
                 ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
                 : "btn btn-ghost btn-sm"
             }
           >
-            <IoIosNotifications className="text-3xl" />
+            <button className="btn btn-sm btn-ghost">
+              <IoIosNotifications className="text-3xl" />
+              <div className="badge badge-secondary">+0</div>
+            </button>
           </NavLink>
         </ul>
       </div>
@@ -155,17 +159,16 @@ const Navbar = () => {
             <NavLink
               to="/login"
               className={({ isActive }) =>
-                isActive ? "btn bg-[#FF715A] btn-sm" : "btn btn-ghost btn-sm"
+                isActive
+                  ? "btn bg-[#FF715A] btn-sm mr-2"
+                  : "btn btn-ghost btn-sm mr-2"
               }
             >
               Login
             </NavLink>
             <div className="avatar">
               <div className="w-10 rounded-full">
-                <img
-                  src="https://i.ibb.co/bLrMRXp/user.png"
-                  alt="User Avatar"
-                />
+                <FaUser className="mt-2 text-xl" />
               </div>
             </div>
           </>

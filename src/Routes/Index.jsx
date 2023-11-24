@@ -5,6 +5,10 @@ import MainLayout from "../Layout/MainLayout";
 import Register from "../Pages/Register";
 import Login from "../Pages/Login";
 import Errorpage from "../Pages/Errorpage";
+import Dashboard from "../Layout/Dashboard";
+import MyParcels from "../components/Dashboard/MyParcels/MyParcels";
+import BookParcel from "../components/Dashboard/BookParcel/BookParcel";
+import UserProfile from "../components/Dashboard/userProfile/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +27,24 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "myParcels",
+        element: <MyParcels></MyParcels>,
+      },
+      {
+        path: "bookParcel",
+        element: <BookParcel></BookParcel>,
+      },
+      {
+        path: "userProfile",
+        element: <UserProfile></UserProfile>,
       },
     ],
   },
