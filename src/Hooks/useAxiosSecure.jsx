@@ -5,4 +5,8 @@ const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
 });
 
-export default axiosSecure;
+const useAxiosSecure = () => {
+  return axiosSecure;
+};
+
+export default useAxiosSecure;

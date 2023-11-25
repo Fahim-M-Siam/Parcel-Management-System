@@ -7,6 +7,8 @@ import SectionTitle from "../components/SectionTitle/SectionTitle";
 
 // @ts-nocheck
 const DashboardLayout = () => {
+  const isAdmin = true;
+  const isDeliveryMen = true;
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-[#FF715A]">
@@ -14,21 +16,43 @@ const DashboardLayout = () => {
           <SectionTitle heading={"Ship Ease"}></SectionTitle>
         </div>
         <ul className="menu text-md">
-          <li>
-            <NavLink to="/dashboard/bookParcel">
-              <MdDeliveryDining /> Book Parcel
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/myParcels">
-              <FaList /> My Parcels
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/userProfile">
-              <CgProfile /> My Profile
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/bookParcel">
+                  <MdDeliveryDining /> Book Parcel
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myParcels">
+                  <FaList /> My Parcels
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/userProfile">
+                  <CgProfile /> My Profile
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/bookParcel">
+                  <MdDeliveryDining /> Book Parcel
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myParcels">
+                  <FaList /> My Parcels
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/userProfile">
+                  <CgProfile /> My Profile
+                </NavLink>
+              </li>
+            </>
+          )}
           <div className="divider"></div>
           <li>
             <NavLink to="/">

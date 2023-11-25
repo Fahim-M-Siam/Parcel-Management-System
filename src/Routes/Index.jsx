@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import MyParcels from "../components/Dashboard/MyParcels/MyParcels";
 import BookParcel from "../components/Dashboard/BookParcel/BookParcel";
 import UserProfile from "../components/Dashboard/userProfile/UserProfile";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "myParcels",

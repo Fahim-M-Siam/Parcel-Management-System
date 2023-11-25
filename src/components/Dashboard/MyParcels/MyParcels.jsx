@@ -34,21 +34,10 @@ const MyParcels = () => {
             <tbody>
               {/* row 1 */}
               <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+                <th></th>
                 <td>
                   <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src="/tailwind-css-component-profile-2@56w.png"
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
+                    <td>Food</td>
                     <div>
                       <div className="font-bold">Hart Hagerty</div>
                       <div className="text-sm opacity-50">United States</div>

@@ -2,6 +2,51 @@
 import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const BookParcel = () => {
+  //     const { currentUser } = useAuth();
+  //   const handleAddFood = (event) => {
+  //     event.preventDefault();
+  //     const toastId = toast.loading("Processing..");
+  //     const form = event.target;
+  //     // inputvalues
+  //     const foodName = form.foodName.value.toLowerCase();
+  //     const image = form.image.value;
+  //     const category = form.category.value.toLowerCase();
+  //     const quantity = parseInt(form.quantity.value);
+  //     const price = parseInt(form.price.value);
+  //     const userName = form.userName.value.toLowerCase();
+  //     const userEmail = form.userEmail.value.toLowerCase();
+  //     const country = form.country.value;
+  //     const shortDescription = form.shortDescription.value;
+  //     const description = form.description.value;
+
+  //     const newFoodItem = {
+  //       foodName,
+  //       image,
+  //       category,
+  //       quantity,
+  //       price,
+  //       userName,
+  //       userEmail,
+  //       country,
+  //       count: 0,
+  //       shortDescription,
+  //       description,
+  //     };
+
+  //     axios
+  //       .post("https://taste-harmony-cafe-server.vercel.app/addFood", newFoodItem)
+  //       .then((res) => {
+  //         const data = res.data;
+  //         if (data.insertedId) {
+  //           toast.success("Successfully Added the Food Item", { id: toastId });
+  //         } else {
+  //           toast.error(data.message, { id: toastId });
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error adding food item:", error, { id: toastId });
+  //       });
+  //   };
   return (
     <div>
       <SectionTitle heading={"book a parcel"}></SectionTitle>

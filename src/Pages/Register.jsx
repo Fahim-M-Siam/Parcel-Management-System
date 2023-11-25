@@ -9,10 +9,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../Hooks/useAuth";
 import { imageUpload } from "../api/utils";
-import axiosSecure from "../Hooks/useAxiosSecure";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, logOut } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
@@ -62,7 +63,7 @@ const Register = () => {
         });
 
       // sendin user information to backend
-      axiosSecure
+      axiosPublic
         .post("/users", { name, email, image, type })
         .then((response) => {
           console.log(response.data);
