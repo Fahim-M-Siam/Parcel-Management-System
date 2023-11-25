@@ -10,6 +10,10 @@ import MyParcels from "../components/Dashboard/MyParcels/MyParcels";
 import BookParcel from "../components/Dashboard/BookParcel/BookParcel";
 import UserProfile from "../components/Dashboard/userProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute";
+import AllParcel from "../components/Dashboard/AllParcel/AllParcel";
+import AllUsers from "../components/Dashboard/AllUsers/AllUsers";
+import AllDeliveryMen from "../components/Dashboard/AllDeliveryMen/AllDeliveryMen";
+import Statistics from "../components/Dashboard/Statistics/Statistics";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +43,7 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // Noraml Users Routes
       {
         path: "myParcels",
         element: <MyParcels></MyParcels>,
@@ -51,6 +56,26 @@ export const router = createBrowserRouter([
         path: "userProfile",
         element: <UserProfile></UserProfile>,
       },
+      // Noraml Users Routes
+
+      // Admin Routes
+      {
+        path: "allParcel",
+        element: <AllParcel></AllParcel>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "allDeliveryMen",
+        element: <AllDeliveryMen></AllDeliveryMen>,
+      },
+      {
+        path: "statistics",
+        element: <Statistics></Statistics>,
+      },
+      // Admin Routes
     ],
   },
 ]);
