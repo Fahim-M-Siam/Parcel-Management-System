@@ -14,6 +14,8 @@ import AllParcel from "../components/Dashboard/AllParcel/AllParcel";
 import AllUsers from "../components/Dashboard/AllUsers/AllUsers";
 import AllDeliveryMen from "../components/Dashboard/AllDeliveryMen/AllDeliveryMen";
 import Statistics from "../components/Dashboard/Statistics/Statistics";
+import DeliveryList from "../components/Dashboard/DeliveryList/DeliveryList";
+import Reviews from "../components/Dashboard/Reviews/Reviews";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +78,17 @@ export const router = createBrowserRouter([
         element: <Statistics></Statistics>,
       },
       // Admin Routes
+
+      // DeliveryMen Routes
+      {
+        path: "deliveryList",
+        element: <DeliveryList></DeliveryList>,
+      },
+      {
+        path: "reviews",
+        element: <Reviews></Reviews>,
+      },
+      // DeliveryMen Routes
     ],
   },
 ]);

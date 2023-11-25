@@ -23,6 +23,7 @@ const Register = () => {
     // inputvalues
     const name = form.name.value;
     const email = form.email.value;
+    const phoneNumber = form.number.value;
     const type = form.type.value;
     const password = form.password.value;
     const imageFile = form.image.files[0];
@@ -64,7 +65,7 @@ const Register = () => {
 
       // sendin user information to backend
       axiosPublic
-        .post("/users", { name, email, image, type })
+        .post("/users", { name, email, phoneNumber, image, type })
         .then((response) => {
           console.log(response.data);
         })
@@ -118,6 +119,18 @@ const Register = () => {
             </div>
             <div className="form-control">
               <label className="label">
+                <span className="label-text">Phone Number</span>
+              </label>
+              <input
+                type="number"
+                placeholder="Your Active Phone Number"
+                name="number"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
                 <span className="label-text">User Type</span>
               </label>
               <select
@@ -125,7 +138,7 @@ const Register = () => {
                 required
                 className="select select-bordered w-full max-w-xs"
               >
-                <option disabled value="default">
+                <option disabled selected>
                   Your Type
                 </option>
                 <option value="DeliveryMen">Delivery Men</option>

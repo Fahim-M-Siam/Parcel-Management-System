@@ -11,7 +11,7 @@ import SectionTitle from "../components/SectionTitle/SectionTitle";
 // @ts-nocheck
 const DashboardLayout = () => {
   // const isAdmin = true;
-  const isDeliveryMen = true;
+  const isDeliveryMen = false;
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-[#FF715A]">
