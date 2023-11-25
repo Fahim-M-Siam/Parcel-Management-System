@@ -3,14 +3,15 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaHome, FaList, FaUsers } from "react-icons/fa";
 import { MdDeliveryDining } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-import { PiUsersThreeFill } from "react-icons/pi";
-import { FcStatistics } from "react-icons/fc";
+// import { PiUsersThreeFill } from "react-icons/pi";
+// import { FcStatistics } from "react-icons/fc";
+import { MdOutlineRateReview } from "react-icons/md";
 import SectionTitle from "../components/SectionTitle/SectionTitle";
 
 // @ts-nocheck
 const DashboardLayout = () => {
-  const isAdmin = true;
-  // const isDeliveryMen = true;
+  // const isAdmin = true;
+  const isDeliveryMen = true;
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-[#FF715A]">
@@ -18,7 +19,7 @@ const DashboardLayout = () => {
           <SectionTitle heading={"Ship Ease"}></SectionTitle>
         </div>
         <ul className="menu text-md">
-          {isAdmin ? (
+          {/* {isAdmin ? (
             <>
               <li>
                 <NavLink to="/dashboard/allParcel">
@@ -41,7 +42,24 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             </>
+          ) :  */}
+          {isDeliveryMen ? (
+            // DeliveryMen NavRoutes
+            <>
+              <li>
+                <NavLink to="/dashboard/deliveryList">
+                  <FaList /> Delivery List
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/reviews">
+                  <MdOutlineRateReview /> Reviews
+                </NavLink>
+              </li>
+            </>
           ) : (
+            // DeliveryMen NavRoutes
+            // Users NavRoutes
             <>
               <li>
                 <NavLink to="/dashboard/bookParcel">
@@ -59,6 +77,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
             </>
+            // Users NavRoutes
           )}
           <div className="divider"></div>
           {/* shared navItem */}
