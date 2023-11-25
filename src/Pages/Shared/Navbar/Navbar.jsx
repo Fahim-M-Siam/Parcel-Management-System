@@ -5,9 +5,11 @@ import { IoIosNotifications } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { FaUser } from "react-icons/fa6";
+import useBookings from "../../../Hooks/useBookings";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [booking] = useBookings();
 
   const handleLogOut = () => {
     logOut()
@@ -115,7 +117,7 @@ const Navbar = () => {
           >
             <button className="btn btn-sm btn-ghost">
               <IoIosNotifications className="text-3xl" />
-              <div className="badge badge-secondary">+0</div>
+              <div className="badge badge-secondary">+{booking.length}</div>
             </button>
           </NavLink>
         </ul>

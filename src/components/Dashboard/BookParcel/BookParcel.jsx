@@ -7,12 +7,14 @@ import Lottie from "lottie-react";
 import { useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import bookingParcel from "../../../assets/bookingParcel.json";
+import useBookings from "../../../Hooks/useBookings";
 
 const BookParcel = () => {
   const { user } = useAuth();
   const [parcelWeight, setParcelWeight] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const axiosPublic = useAxiosPublic();
+  const [refetch] = useBookings();
 
   const handleParcelWeightChange = (event) => {
     const weight = parseFloat(event.target.value);
@@ -38,7 +40,7 @@ const BookParcel = () => {
     const form = event.target;
     // inputvalues
     const userName = form.userName.value.toLowerCase();
-    const userEmail = form.userEmail.value.toLowerCase();
+    const email = form.email.value.toLowerCase();
     const userNumber = form.userNumber.value;
     const parcelType = form.parcelType.value.toLowerCase();
     const parcelWeight = parseInt(form.parcelWeight.value);
@@ -62,7 +64,7 @@ const BookParcel = () => {
 
     const newBookingItem = {
       userName,
-      userEmail,
+      email,
       userNumber,
       parcelType,
       parcelWeight,
@@ -82,13 +84,14 @@ const BookParcel = () => {
       .then((res) => {
         const data = res.data;
         if (data.insertedId) {
-          toast.success("Successfully Added the Food Item", { id: toastId });
+          toast.success("Parcel has been successfully booked", { id: toastId });
+          refetch();
         } else {
           toast.error(data.message, { id: toastId });
         }
       })
       .catch((error) => {
-        console.log("Error adding food item:", error, { id: toastId });
+        console.log("Error adding booking item:", error, { id: toastId });
       });
   };
   return (
@@ -138,7 +141,7 @@ const BookParcel = () => {
                   <input
                     className="input input-bordered"
                     type="text"
-                    name="userEmail"
+                    name="email"
                     value={user.email}
                     readOnly
                   />
