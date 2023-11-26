@@ -5,15 +5,15 @@ import useAuth from "../../../Hooks/useAuth";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import Lottie from "lottie-react";
 import { useState } from "react";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import bookingParcel from "../../../assets/bookingParcel.json";
 import useBookings from "../../../Hooks/useBookings";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const BookParcel = () => {
   const { user } = useAuth();
   const [parcelWeight, setParcelWeight] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [refetch] = useBookings();
 
   const handleParcelWeightChange = (event) => {
@@ -55,7 +55,7 @@ const BookParcel = () => {
     const approximateDate = "will be updated";
     const deliveryMenId = "will be assigned soon";
     const bookingWholeDate = new Date();
-    const formattedDate = `${bookingWholeDate.getUTCFullYear()}-${(
+    const bookingDate = `${bookingWholeDate.getUTCFullYear()}-${(
       bookingWholeDate.getUTCMonth() + 1
     )
       .toString()
@@ -79,12 +79,12 @@ const BookParcel = () => {
       locationLongtitude,
       approximateDate,
       deliveryMenId,
-      formattedDate,
+      bookingDate,
       status,
     };
     console.log(newBookingItem);
 
-    axiosPublic
+    axiosSecure
       .post("/bookings", newBookingItem)
       .then((res) => {
         const data = res.data;

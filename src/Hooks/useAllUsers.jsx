@@ -1,19 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
-const useBookings = () => {
+const useAllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: booking = [], refetch } = useQuery({
-    queryKey: ["booking", user?.email],
+  const { data: allUsers = [], refetch } = useQuery({
+    queryKey: ["allUsers", user?.type],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/bookings?email=${user.email}`);
+      const res = await axiosSecure.get("/allUsers?type=User");
       return res.data;
     },
   });
-  return [booking, refetch];
+  return [allUsers, refetch];
 };
 
-export default useBookings;
+export default useAllUsers;

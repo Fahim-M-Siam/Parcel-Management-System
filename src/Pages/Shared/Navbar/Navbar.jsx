@@ -46,9 +46,6 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {user && isAdmin && (
-              <NavLink to="/dashboard/statistics">Dashboard</NavLink>
-            )}
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -59,16 +56,33 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive
-                  ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
-                  : "btn btn-ghost btn-sm"
-              }
-            >
-              Dashboard
-            </NavLink>
+            {user && isAdmin ? (
+              <>
+                <NavLink
+                  to="/dashboard/statistics"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                      : "btn btn-ghost btn-sm"
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                      : "btn btn-ghost btn-sm"
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </>
+            )}
             <NavLink
               to="/notification"
               className={({ isActive }) =>
@@ -92,9 +106,6 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {user && isAdmin && (
-            <NavLink to="/dashboard/statistics">Dashboard</NavLink>
-          )}
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -105,29 +116,66 @@ const Navbar = () => {
           >
             Home
           </NavLink>
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              isActive
-                ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
-                : "btn btn-ghost btn-sm"
-            }
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/dashboard/myParcels"
-            className={({ isActive }) =>
-              isActive
-                ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
-                : "btn btn-ghost btn-sm"
-            }
-          >
-            <button className="btn btn-sm btn-ghost">
-              <IoIosNotifications className="text-3xl" />
-              <div className="badge badge-secondary">+{booking.length}</div>
-            </button>
-          </NavLink>
+          {user && isAdmin ? (
+            <>
+              <NavLink
+                to="/dashboard/statistics"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                    : "btn btn-ghost btn-sm"
+                }
+              >
+                Dashboard
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                    : "btn btn-ghost btn-sm"
+                }
+              >
+                Dashboard
+              </NavLink>
+            </>
+          )}
+          {user && isAdmin ? (
+            <>
+              <NavLink
+                to="/dashboard/allParcel"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                    : "btn btn-ghost btn-sm"
+                }
+              >
+                <button className="btn btn-sm btn-ghost">
+                  <IoIosNotifications className="text-3xl" />
+                  <div className="badge badge-secondary">+0</div>
+                </button>
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/dashboard/myParcels"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-outline bg-[#FF715A] text-white btn-sm"
+                    : "btn btn-ghost btn-sm"
+                }
+              >
+                <button className="btn btn-sm btn-ghost">
+                  <IoIosNotifications className="text-3xl" />
+                  <div className="badge badge-secondary">+{booking.length}</div>
+                </button>
+              </NavLink>
+            </>
+          )}
         </ul>
       </div>
 
