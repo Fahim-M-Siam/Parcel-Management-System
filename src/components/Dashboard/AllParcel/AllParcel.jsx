@@ -79,7 +79,7 @@ const AllParcel = () => {
               </tr>
             </thead>
             <tbody>
-              {mergedBookings?.map((item, i) => (
+              {allBookings?.map((item, i) => (
                 <AllParcelTable
                   modalNumber={i + 1}
                   key={item._id}
