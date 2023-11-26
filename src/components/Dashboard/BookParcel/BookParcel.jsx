@@ -51,7 +51,9 @@ const BookParcel = () => {
     const receiverAddress = form.receiverAddress.value.toLowerCase();
     const locationLatitude = parseInt(form.latitude.value);
     const locationLongtitude = parseInt(form.longtitude.value);
-    // const bookingWholeDate = new Date();
+    const status = "pending";
+    const approximateDate = "will be updated";
+    const deliveryMenId = "will be assigned soon";
     const bookingWholeDate = new Date();
     const formattedDate = `${bookingWholeDate.getUTCFullYear()}-${(
       bookingWholeDate.getUTCMonth() + 1
@@ -75,7 +77,10 @@ const BookParcel = () => {
       receiverAddress,
       locationLatitude,
       locationLongtitude,
+      approximateDate,
+      deliveryMenId,
       formattedDate,
+      status,
     };
     console.log(newBookingItem);
 

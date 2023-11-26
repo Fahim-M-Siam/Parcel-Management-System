@@ -1,7 +1,13 @@
 // @ts-nocheck
+import useBookings from "../../../Hooks/useBookings";
 import SectionTitle from "../../SectionTitle/SectionTitle";
+import { FaEdit } from "react-icons/fa";
+import { MdOutlineCancel } from "react-icons/md";
+import { MdReviews } from "react-icons/md";
+import { GiPayMoney } from "react-icons/gi";
 
 const MyParcels = () => {
+  const [booking] = useBookings();
   return (
     <div>
       <SectionTitle heading={"my parcels"}></SectionTitle>
@@ -32,30 +38,40 @@ const MyParcels = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th></th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <td>Food</td>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
+              {booking?.map((item) => (
+                <tr key={item._id}>
+                  <th></th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <td>{item.parcelType}</td>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  Zemlak, Daniel and Leannon
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
-                  </span>
-                </td>
-                <td>Purple</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
+                  </td>
+                  <td>{item.requestedDate}</td>
+                  <td>{item.approximateDate}</td>
+                  <td>{item.deliveryMenId}</td>
+                  <td>{item.status}</td>
+                  <th>
+                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                      <FaEdit />
+                    </button>
+                  </th>
+                  <th>
+                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                      <MdOutlineCancel />
+                    </button>
+                  </th>
+                  <th>
+                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                      <MdReviews />
+                    </button>
+                  </th>
+                  <th>
+                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                      <GiPayMoney />
+                    </button>
+                  </th>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

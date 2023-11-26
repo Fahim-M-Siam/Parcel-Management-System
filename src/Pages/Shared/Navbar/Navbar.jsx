@@ -6,9 +6,11 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { FaUser } from "react-icons/fa6";
 import useBookings from "../../../Hooks/useBookings";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
   const [booking] = useBookings();
 
   const handleLogOut = () => {
@@ -44,6 +46,9 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
+            {user && isAdmin && (
+              <NavLink to="/dashboard/statistics">Dashboard</NavLink>
+            )}
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -87,6 +92,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
+          {user && isAdmin && (
+            <NavLink to="/dashboard/statistics">Dashboard</NavLink>
+          )}
           <NavLink
             to="/"
             className={({ isActive }) =>
