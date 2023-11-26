@@ -5,14 +5,15 @@ import { MdDeliveryDining } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { FcStatistics } from "react-icons/fc";
-// import { MdOutlineRateReview } from "react-icons/md";
+import { MdOutlineRateReview } from "react-icons/md";
 import SectionTitle from "../components/SectionTitle/SectionTitle";
 import useAdmin from "../Hooks/useAdmin";
+import useDeliveryMen from "../Hooks/useDeliveryMen";
 
 // @ts-nocheck
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
-  // const isDeliveryMen = false;
+  const [isDeliveryMen] = useDeliveryMen();
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-[#FF715A]">
@@ -44,24 +45,22 @@ const DashboardLayout = () => {
                   </NavLink>
                 </li>
               </>
+            ) : isDeliveryMen ? (
+              // DeliveryMen NavRoutes
+              <>
+                <li>
+                  <NavLink to="/dashboard/deliveryList">
+                    <FaList /> Delivery List
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/reviews">
+                    <MdOutlineRateReview /> Reviews
+                  </NavLink>
+                </li>
+              </>
             ) : (
-              // {isDeliveryMen ? (
-              //   // DeliveryMen NavRoutes
-              //   <>
-              //     <li>
-              //       <NavLink to="/dashboard/deliveryList">
-              //         <FaList /> Delivery List
-              //       </NavLink>
-              //     </li>
-              //     <li>
-              //       <NavLink to="/dashboard/reviews">
-              //         <MdOutlineRateReview /> Reviews
-              //       </NavLink>
-              //     </li>
-              //   </>
-              //   // DeliveryMen NavRoutes
-              // ) : (
-
+              // DeliveryMen NavRoutes
               // Users NavRoutes
               <>
                 <li>

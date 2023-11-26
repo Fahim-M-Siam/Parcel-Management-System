@@ -17,6 +17,7 @@ import Statistics from "../components/Dashboard/Statistics/Statistics";
 import DeliveryList from "../components/Dashboard/DeliveryList/DeliveryList";
 import Reviews from "../components/Dashboard/Reviews/Reviews";
 import AdminRoute from "./AdminRoute";
+import DeliveryMenRoute from "./DeliveryMenRoute";
 
 export const router = createBrowserRouter([
   {
@@ -99,11 +100,19 @@ export const router = createBrowserRouter([
       // DeliveryMen Routes
       {
         path: "deliveryList",
-        element: <DeliveryList></DeliveryList>,
+        element: (
+          <DeliveryMenRoute>
+            <DeliveryList></DeliveryList>
+          </DeliveryMenRoute>
+        ),
       },
       {
         path: "reviews",
-        element: <Reviews></Reviews>,
+        element: (
+          <DeliveryMenRoute>
+            <Reviews></Reviews>
+          </DeliveryMenRoute>
+        ),
       },
       // DeliveryMen Routes
     ],
