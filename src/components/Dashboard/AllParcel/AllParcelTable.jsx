@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 // @ts-nocheck
-import { MdEditNote } from "react-icons/md";
-const AllParcelTable = ({ item }) => {
+
+import Modal from "../../Modal";
+const AllParcelTable = ({ modalNumber, item }) => {
   const { userName, userNumber, bookingDate, requestedDate, price, status } =
     item;
   return (
@@ -20,9 +21,7 @@ const AllParcelTable = ({ item }) => {
       <td>{price}</td>
       <th>{status}</th>
       <td>
-        <button className="btn bg-[#FF715A] btn-sm">
-          <MdEditNote className="text-lg" />
-        </button>
+        <Modal modalId={modalNumber} item={item}></Modal>
       </td>
     </tr>
   );

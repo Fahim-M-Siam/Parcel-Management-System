@@ -4,7 +4,7 @@ import SectionTitle from "../../SectionTitle/SectionTitle";
 import AllUsersTable from "./AllUsersTable";
 
 const AllUsers = () => {
-  const [users] = useAllUsers();
+  const [users] = useAllUsers("User");
   return (
     <div>
       <SectionTitle heading={"All users"}></SectionTitle>
