@@ -7,11 +7,13 @@ import useAuth from "../../../Hooks/useAuth";
 import { FaUser } from "react-icons/fa6";
 import useBookings from "../../../Hooks/useBookings";
 import useAdmin from "../../../Hooks/useAdmin";
+import useAllBookings from "../../../Hooks/useAllBookings";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isAdmin] = useAdmin();
   const [booking] = useBookings();
+  const [allBookings] = useAllBookings();
 
   const handleLogOut = () => {
     logOut()
@@ -155,7 +157,9 @@ const Navbar = () => {
               >
                 <button className="btn btn-sm btn-ghost">
                   <IoIosNotifications className="text-3xl" />
-                  <div className="badge badge-secondary">+0</div>
+                  <div className="badge badge-secondary">
+                    +{allBookings.length}
+                  </div>
                 </button>
               </NavLink>
             </>

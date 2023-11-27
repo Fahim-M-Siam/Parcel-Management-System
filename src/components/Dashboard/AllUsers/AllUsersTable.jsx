@@ -1,58 +1,54 @@
+/* eslint-disable react/prop-types */
 // @ts-nocheck
-const AllUsersTable = () => {
+import { IoMan } from "react-icons/io5";
+import { RiAdminFill } from "react-icons/ri";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+
+const AllUsersTable = ({ user, index, refetch }) => {
+  const { name, phoneNumber } = user;
+  const axiosSecure = useAxiosSecure();
+
+  const handleMakeAdmin = (user) => {
+    axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${name} is Admin now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
   return (
-    <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr>
-            <th>User Name</th>
-            <th>Users Phone</th>
-            <th>Parcel Booked</th>
-            <th>Total Amount</th>
-            <th>Make Delivery Men</th>
-            <th>Make Admin</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* row 1 */}
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div className="flex items-center gap-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
-                    <img
-                      src="/tailwind-css-component-profile-2@56w.png"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="font-bold">Hart Hagerty</div>
-                  <div className="text-sm opacity-50">United States</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              Zemlak, Daniel and Leannon
-              <br />
-              <span className="badge badge-ghost badge-sm">
-                Desktop Support Technician
-              </span>
-            </td>
-            <td>Purple</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">details</button>
-            </th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <tr>
+      <th>{index + 1}</th>
+      <td>
+        <div className="flex items-center gap-3">
+          <div>
+            <div className="font-bold">{name}</div>
+          </div>
+        </div>
+      </td>
+      <td>{phoneNumber}</td>
+      <td>0</td>
+      <td>
+        <button className="btn btn-sm btn-outline bg-[#FF715A] text-white">
+          <IoMan />
+        </button>
+      </td>
+      <th>
+        <button
+          onClick={() => handleMakeAdmin(user)}
+          className="btn btn-sm btn-outline bg-[#FF715A] text-white"
+        >
+          <RiAdminFill />
+        </button>
+      </th>
+    </tr>
   );
 };
 
