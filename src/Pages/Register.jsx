@@ -22,7 +22,7 @@ const Register = () => {
     const form = event.target;
     // inputvalues
     const name = form.name.value;
-    const email = form.email.value;
+    const email = form.email.value.toLowerCase();
     const phoneNumber = form.number.value;
     const type = form.type.value;
     const password = form.password.value;

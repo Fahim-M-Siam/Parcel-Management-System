@@ -25,6 +25,7 @@ const Modal = ({ item, modalId, refetch }) => {
       approxDate,
       status,
     };
+
     axiosSecure
       .put(`/allBookings?id=${_id}`, update)
       .then((res) => {
@@ -68,7 +69,7 @@ const Modal = ({ item, modalId, refetch }) => {
                     Choose Delivery Men
                   </option>
                   {allUsers?.map((deliveryMen) => (
-                    <option key={deliveryMen?._id} value={deliveryMen?._id}>
+                    <option key={deliveryMen?._id} value={deliveryMen?.email}>
                       {deliveryMen?.name} - {deliveryMen?._id}
                     </option>
                   ))}

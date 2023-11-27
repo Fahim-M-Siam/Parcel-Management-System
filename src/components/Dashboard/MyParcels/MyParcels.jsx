@@ -37,11 +37,9 @@ const MyParcels = () => {
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
-            position: "top-end",
+            title: "Canceled!",
+            text: `Your ${item.name} has been Canceled.`,
             icon: "success",
-            title: "Your work has been saved",
-            showConfirmButton: false,
-            timer: 1500,
           });
         }
       }

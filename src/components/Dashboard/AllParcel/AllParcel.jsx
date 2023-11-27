@@ -4,7 +4,7 @@ import AllParcelTable from "./AllParcelTable";
 import useAllBookings from "../../../Hooks/useAllBookings";
 
 const AllParcel = () => {
-  const [allBookings] = useAllBookings();
+  const [allBookings, refetch] = useAllBookings();
 
   return (
     <div>
@@ -32,6 +32,7 @@ const AllParcel = () => {
                   modalNumber={i + 1}
                   key={item._id}
                   item={item}
+                  refetch={refetch}
                 ></AllParcelTable>
               ))}
             </tbody>

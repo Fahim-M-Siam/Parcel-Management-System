@@ -14,6 +14,7 @@ import useDeliveryMen from "../Hooks/useDeliveryMen";
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
   const [isDeliveryMen] = useDeliveryMen();
+
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-[#FF715A]">

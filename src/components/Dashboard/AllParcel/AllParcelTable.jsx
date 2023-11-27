@@ -3,7 +3,7 @@
 
 import { MdEditNote } from "react-icons/md";
 import Modal from "../../Modal";
-const AllParcelTable = ({ modalNumber, item }) => {
+const AllParcelTable = ({ modalNumber, item, refetch }) => {
   const { userName, userNumber, bookingDate, requestedDate, price, status } =
     item;
   return (
@@ -29,7 +29,7 @@ const AllParcelTable = ({ modalNumber, item }) => {
           <MdEditNote className="text-lg" />
         </label>
 
-        <Modal modalId={modalNumber} item={item}></Modal>
+        <Modal modalId={modalNumber} item={item} refetch={refetch}></Modal>
       </td>
     </tr>
   );

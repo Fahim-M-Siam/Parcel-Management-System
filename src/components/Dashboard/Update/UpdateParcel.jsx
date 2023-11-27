@@ -1,9 +1,11 @@
 // @ts-nocheck
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const UpdateParcel = () => {
-  const { item } = useLoaderData();
+  const { id } = useParams();
+  console.log(id);
+  const item = useLoaderData();
   console.log(item);
   return (
     <div>
