@@ -9,6 +9,7 @@ const AllUsersTable = ({ user, index, refetch }) => {
   const { name, phoneNumber } = user;
   const axiosSecure = useAxiosSecure();
 
+  // make admin
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
       if (res.data.modifiedCount > 0) {
@@ -17,6 +18,22 @@ const AllUsersTable = ({ user, index, refetch }) => {
           position: "top-end",
           icon: "success",
           title: `${name} is Admin now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
+  // make deliveryMen
+  const handleMakeDeliveryMen = (user) => {
+    axiosSecure.patch(`/users/deliveryMen/${user._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${name} is DeliveryMen now`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -36,7 +53,10 @@ const AllUsersTable = ({ user, index, refetch }) => {
       <td>{phoneNumber}</td>
       <td>0</td>
       <td>
-        <button className="btn btn-sm btn-outline bg-[#FF715A] text-white">
+        <button
+          onClick={() => handleMakeDeliveryMen(user)}
+          className="btn btn-sm btn-outline bg-[#FF715A] text-white"
+        >
           <IoMan />
         </button>
       </td>
