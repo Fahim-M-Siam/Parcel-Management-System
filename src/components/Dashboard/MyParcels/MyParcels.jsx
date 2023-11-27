@@ -5,12 +5,34 @@ import { FaEdit } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdReviews } from "react-icons/md";
 import { GiPayMoney } from "react-icons/gi";
+import { useState } from "react";
 
 const MyParcels = () => {
   const [booking] = useBookings();
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const filteredBookings = booking.filter((booking) => {
+    if (!selectedStatus) {
+      return true;
+    }
+    return booking.status === selectedStatus;
+  });
   return (
     <div>
       <SectionTitle heading={"my parcels"}></SectionTitle>
+      <div className="ml-20 my-20 btn btn-sm bg-[#FF715A]">
+        <label htmlFor="statusFilter">Filter by Status:</label>
+        <select
+          id="statusFilter"
+          value={selectedStatus}
+          onChange={(e) => setSelectedStatus(e.target.value)}
+        >
+          <option value="">All</option>
+          <option value="pending">Pending</option>
+          <option value="onTheWay">On the Way</option>
+          <option value="delivered">Delivered</option>
+          <option value="canceled">Canceled</option>
+        </select>
+      </div>
       <div>
         <div className="overflow-x-auto">
           <table className="table">
@@ -38,7 +60,7 @@ const MyParcels = () => {
               </tr>
             </thead>
             <tbody>
-              {booking?.map((item) => (
+              {filteredBookings?.map((item) => (
                 <tr key={item._id}>
                   <th></th>
                   <td>
