@@ -18,6 +18,7 @@ import DeliveryList from "../components/Dashboard/DeliveryList/DeliveryList";
 import Reviews from "../components/Dashboard/Reviews/Reviews";
 import AdminRoute from "./AdminRoute";
 import DeliveryMenRoute from "./DeliveryMenRoute";
+import UpdateParcel from "../components/Dashboard/Update/UpdateParcel";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,16 @@ export const router = createBrowserRouter([
       {
         path: "bookParcel",
         element: <BookParcel></BookParcel>,
+      },
+      {
+        path: "updateParcel/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateParcel></UpdateParcel>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
       {
         path: "userProfile",

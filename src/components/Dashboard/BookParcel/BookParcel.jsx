@@ -14,7 +14,7 @@ const BookParcel = () => {
   const [parcelWeight, setParcelWeight] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const axiosSecure = useAxiosSecure();
-  const [refetch] = useBookings();
+  // const [refetch] = useBookings();
 
   const handleParcelWeightChange = (event) => {
     const weight = parseFloat(event.target.value);
@@ -82,7 +82,6 @@ const BookParcel = () => {
       bookingDate,
       status,
     };
-    console.log(newBookingItem);
 
     axiosSecure
       .post("/bookings", newBookingItem)
@@ -90,7 +89,6 @@ const BookParcel = () => {
         const data = res.data;
         if (data.insertedId) {
           toast.success("Parcel has been successfully booked", { id: toastId });
-          refetch();
         } else {
           toast.error(data.message, { id: toastId });
         }

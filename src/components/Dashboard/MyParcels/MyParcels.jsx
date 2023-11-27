@@ -6,9 +6,13 @@ import { MdOutlineCancel } from "react-icons/md";
 import { MdReviews } from "react-icons/md";
 import { GiPayMoney } from "react-icons/gi";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyParcels = () => {
-  const [booking] = useBookings();
+  const [booking, refetch] = useBookings();
+  const axiosSecure = useAxiosSecure();
   const [selectedStatus, setSelectedStatus] = useState("");
   const filteredBookings = booking.filter((booking) => {
     if (!selectedStatus) {
@@ -16,6 +20,33 @@ const MyParcels = () => {
     }
     return booking.status === selectedStatus;
   });
+
+  // cancel booking
+  const handleCancelParcel = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/bookings/${item._id}`);
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
+  };
   return (
     <div>
       <SectionTitle heading={"my parcels"}></SectionTitle>
@@ -73,15 +104,18 @@ const MyParcels = () => {
                   <td>{item.deliveryMenId}</td>
                   <td>{item.status}</td>
                   <th>
-                    <button
-                      disabled={item.status !== "pending"}
-                      className="btn btn-outline btn-sm bg-[#FF715A] text-white "
-                    >
-                      <FaEdit />
-                    </button>
+                    <Link to={`/dashboard/updateParcel/${item._id}`}>
+                      <button
+                        disabled={item.status !== "pending"}
+                        className="btn btn-outline btn-sm bg-[#FF715A] text-white "
+                      >
+                        <FaEdit />
+                      </button>
+                    </Link>
                   </th>
                   <th>
                     <button
+                      onClick={() => handleCancelParcel(item)}
                       disabled={item.status !== "pending"}
                       className="btn btn-outline btn-sm bg-[#FF715A] text-white"
                     >

@@ -7,7 +7,7 @@ import useAllUsers from "../Hooks/useAllUsers";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const Modal = ({ item, modalId }) => {
+const Modal = ({ item, modalId, refetch }) => {
   const { _id } = item;
   console.log(_id);
   const [allUsers] = useAllUsers("DeliveryMen");
@@ -31,6 +31,7 @@ const Modal = ({ item, modalId }) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Assigned");
         }
+        refetch();
       })
       .catch((err) => {
         console.log(err);
