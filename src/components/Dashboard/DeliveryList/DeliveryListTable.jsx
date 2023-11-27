@@ -2,9 +2,14 @@
 // @ts-nocheck
 import { IoLocation } from "react-icons/io5";
 import { MdCancel } from "react-icons/md";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
+  console.log(deliveryBookingItem);
+  const axiosSecure = useAxiosSecure();
   const {
+    _id,
     userName,
     receiverName,
     userNumber,
@@ -14,6 +19,47 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
     locationLatitude,
     locationLongtitude,
   } = deliveryBookingItem;
+
+  // status changing to cancel
+  const handleCancel = (_id) => {
+    const status = "Canceled";
+
+    const update = {
+      status,
+    };
+
+    axiosSecure
+      .put(`/allDeliveryBookings?id=${_id}`, update)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Canceled");
+        }
+        refetch();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  // status changing to cancel
+  const handleDelivered = (_id) => {
+    const status = "Delivered";
+
+    const update = {
+      status,
+    };
+
+    axiosSecure
+      .put(`/allDeliveryBookings?id=${_id}`, update)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Delivered");
+        }
+        refetch();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <tr>
       <th>{index + 1}</th>
@@ -37,26 +83,34 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
           Location
         </button>
         <dialog id="my_modal_4" className="modal">
-          <div className="modal-box w-11/12 max-w-5xl">
+          <div className="modal-box w-11/12 max-w-full h-full">
             <h3 className="font-bold text-lg">Hello!</h3>
             <p className="py-4">Click the button below to close</p>
             <div className="modal-action">
-              <form method="dialog">
+              <form className="-mt-28" method="dialog">
                 {/* if there is a button, it will close the modal */}
-                <button className="btn">Close</button>
+                <button className="btn btn-outline btn-sm">X</button>
               </form>
             </div>
           </div>
         </dialog>
       </th>
       <th>
-        <button className="btn btn-outline btn-xs">
+        <button
+          onClick={() => handleCancel(_id)}
+          className="btn btn-outline btn-xs"
+        >
           <MdCancel />
           Cancel
         </button>
       </th>
       <th>
-        <button className="btn btn-outline btn-xs">Deliver</button>
+        <button
+          onClick={() => handleDelivered(_id)}
+          className="btn btn-outline btn-xs"
+        >
+          Deliver
+        </button>
       </th>
     </tr>
   );
