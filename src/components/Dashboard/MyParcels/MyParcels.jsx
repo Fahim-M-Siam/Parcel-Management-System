@@ -51,17 +51,23 @@ const MyParcels = () => {
                   <td>{item.deliveryMenId}</td>
                   <td>{item.status}</td>
                   <th>
-                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                    <button
+                      disabled={item.status !== "pending"}
+                      className="btn btn-outline btn-sm bg-[#FF715A] text-white "
+                    >
                       <FaEdit />
                     </button>
                   </th>
                   <th>
-                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                    <button
+                      disabled={item.status !== "pending"}
+                      className="btn btn-outline btn-sm bg-[#FF715A] text-white"
+                    >
                       <MdOutlineCancel />
                     </button>
                   </th>
                   <th>
-                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
+                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white disabled">
                       <MdReviews />
                     </button>
                   </th>
