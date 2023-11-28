@@ -57,7 +57,7 @@ const MyParcels = () => {
         >
           <option value="">All</option>
           <option value="pending">Pending</option>
-          <option value="onTheWay">On the Way</option>
+          <option value="onTheWay">On The Way</option>
           <option value="delivered">Delivered</option>
           <option value="canceled">Canceled</option>
         </select>
