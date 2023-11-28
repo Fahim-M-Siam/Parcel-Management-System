@@ -15,10 +15,14 @@ const MyParcels = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedStatus, setSelectedStatus] = useState("");
   const filteredBookings = booking.filter((booking) => {
-    if (!selectedStatus) {
+    const selectedStatusLower = selectedStatus.trim().toLowerCase();
+    const bookingStatusLower = String(booking.status).trim().toLowerCase();
+
+    if (!selectedStatusLower) {
       return true;
     }
-    return booking.status === selectedStatus;
+
+    return bookingStatusLower === selectedStatusLower;
   });
 
   // cancel booking
@@ -104,7 +108,7 @@ const MyParcels = () => {
                   <th>
                     <Link to={`/dashboard/updateParcel/${item._id}`}>
                       <button
-                        disabled={item.status !== "pending"}
+                        disabled={item.status !== "Pending"}
                         className="btn btn-outline btn-sm bg-[#FF715A] text-white "
                       >
                         <FaEdit />
@@ -114,7 +118,7 @@ const MyParcels = () => {
                   <th>
                     <button
                       onClick={() => handleCancelParcel(item)}
-                      disabled={item.status !== "pending"}
+                      disabled={item.status !== "Pending"}
                       className="btn btn-outline btn-sm bg-[#FF715A] text-white"
                     >
                       <MdOutlineCancel />

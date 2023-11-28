@@ -51,7 +51,7 @@ const BookParcel = () => {
     const receiverAddress = form.receiverAddress.value.toLowerCase();
     const locationLatitude = parseInt(form.latitude.value);
     const locationLongtitude = parseInt(form.longtitude.value);
-    const status = "pending";
+    const status = "Pending";
     const approximateDate = "will be updated";
     const deliveryMenId = "will be assigned soon";
     const bookingWholeDate = new Date();
