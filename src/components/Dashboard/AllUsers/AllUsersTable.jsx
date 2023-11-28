@@ -4,10 +4,12 @@ import { IoMan } from "react-icons/io5";
 import { RiAdminFill } from "react-icons/ri";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useBookingCount from "../../../Hooks/useBookingCount";
 
 const AllUsersTable = ({ user, index, refetch }) => {
-  const { name, phoneNumber } = user;
+  const { email, name, phoneNumber } = user;
   const axiosSecure = useAxiosSecure();
+  const [booking] = useBookingCount(email);
 
   // make admin
   const handleMakeAdmin = (user) => {
@@ -51,7 +53,7 @@ const AllUsersTable = ({ user, index, refetch }) => {
         </div>
       </td>
       <td>{phoneNumber}</td>
-      <td>0</td>
+      <td>{booking?.length}</td>
       <td>
         <button
           onClick={() => handleMakeDeliveryMen(user)}

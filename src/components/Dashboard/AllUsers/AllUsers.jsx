@@ -9,6 +9,7 @@ import AllUsersTable from "./AllUsersTable";
 
 const AllUsers = () => {
   const [allUsers, refetch] = useAllUsers("User");
+
   // const [isLoading, setIsLoading] = useState(true);
   // const count = allUsers.length;
   // const userPerPage = 5;

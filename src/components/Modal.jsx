@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 
 const Modal = ({ item, modalId, refetch }) => {
   const { _id } = item;
-  console.log(_id);
   const [allUsers] = useAllUsers("DeliveryMen");
   const axiosSecure = useAxiosSecure();
   const handleAssign = (event) => {
@@ -19,6 +18,7 @@ const Modal = ({ item, modalId, refetch }) => {
     const deliverMenId = form.deliveryMenId.value;
     const approxDate = form.approxDate.value;
     const status = "On The Way";
+    console.log(approxDate);
 
     const update = {
       deliverMenId,
@@ -26,17 +26,17 @@ const Modal = ({ item, modalId, refetch }) => {
       status,
     };
 
-    axiosSecure
-      .put(`/allBookings?id=${_id}`, update)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          toast.success("Assigned");
-        }
-        refetch();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axiosSecure
+    //   .put(`/allBookings?id=${_id}`, update)
+    //   .then((res) => {
+    //     if (res.data.modifiedCount > 0) {
+    //       toast.success("Assigned");
+    //     }
+    //     refetch();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
   return (
     <div>

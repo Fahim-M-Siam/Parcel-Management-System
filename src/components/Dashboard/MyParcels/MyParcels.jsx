@@ -125,9 +125,29 @@ const MyParcels = () => {
                     </button>
                   </th>
                   <th>
-                    <button className="btn btn-outline btn-sm bg-[#FF715A] text-white disabled">
+                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                    <button
+                      className="btn btn-outline btn-sm bg-[#FF715A] text-white disabled"
+                      onClick={() =>
+                        document.getElementById("my_modal_1").showModal()
+                      }
+                    >
                       <MdReviews />
                     </button>
+                    <dialog id="my_modal_1" className="modal">
+                      <div className="modal-box">
+                        <h3 className="font-bold text-lg">Hello!</h3>
+                        <p className="py-4">
+                          Press ESC key or click the button below to close
+                        </p>
+                        <div className="modal-action">
+                          <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
                   </th>
                   <th>
                     <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
