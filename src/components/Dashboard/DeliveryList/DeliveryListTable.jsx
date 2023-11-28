@@ -4,6 +4,7 @@ import { IoLocation } from "react-icons/io5";
 import { MdCancel } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import LocationMap from "./LocationMap";
 
 const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
   console.log(deliveryBookingItem);
@@ -19,6 +20,8 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
     locationLatitude,
     locationLongtitude,
   } = deliveryBookingItem;
+  const latitude = 23.811056;
+  const longitude = 90.407608;
 
   // status changing to cancel
   const handleCancel = (_id) => {
@@ -83,14 +86,23 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
           Location
         </button>
         <dialog id="my_modal_4" className="modal">
-          <div className="modal-box w-11/12 max-w-full h-full">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <p className="py-4">Click the button below to close</p>
-            <div className="modal-action">
-              <form className="-mt-28" method="dialog">
-                {/* if there is a button, it will close the modal */}
-                <button className="btn btn-outline btn-sm">X</button>
-              </form>
+          <div className="modal-box w-11/12 max-w-full h-[800px]">
+            <div>
+              <div>
+                <p className="py-4">
+                  Click ESC or the button in right corner to close
+                </p>
+                <div className="modal-action">
+                  <form className="-mt-20" method="dialog">
+                    {/* if there is a button, it will close the modal */}
+                    <button className="btn btn-outline btn-sm">X</button>
+                  </form>
+                </div>
+              </div>
+              <LocationMap
+                latitude={latitude}
+                longitude={longitude}
+              ></LocationMap>
             </div>
           </div>
         </dialog>
