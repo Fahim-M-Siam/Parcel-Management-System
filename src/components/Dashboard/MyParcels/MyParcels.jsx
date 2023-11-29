@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import ReviewTwoModal from "./ReviewTwoModal";
 
 const MyParcels = () => {
   const [booking, refetch] = useBookings();
@@ -93,7 +94,7 @@ const MyParcels = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredBookings?.map((item) => (
+              {filteredBookings?.map((item, i) => (
                 <tr key={item._id}>
                   <th></th>
                   <td>
@@ -125,29 +126,13 @@ const MyParcels = () => {
                     </button>
                   </th>
                   <th>
-                    {/* Open the modal using document.getElementById('ID').showModal() method */}
-                    <button
-                      className="btn btn-outline btn-sm bg-[#FF715A] text-white disabled"
-                      onClick={() =>
-                        document.getElementById("my_modal_1").showModal()
-                      }
+                    <label
+                      htmlFor={i + 1}
+                      className="btn btn-outline btn-sm bg-[#FF715A] text-white"
                     >
                       <MdReviews />
-                    </button>
-                    <dialog id="my_modal_1" className="modal">
-                      <div className="modal-box">
-                        <h3 className="font-bold text-lg">Hello!</h3>
-                        <p className="py-4">
-                          Press ESC key or click the button below to close
-                        </p>
-                        <div className="modal-action">
-                          <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn">Close</button>
-                          </form>
-                        </div>
-                      </div>
-                    </dialog>
+                    </label>
+                    <ReviewTwoModal item={item} i={i}></ReviewTwoModal>
                   </th>
                   <th>
                     <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">
@@ -163,5 +148,7 @@ const MyParcels = () => {
     </div>
   );
 };
+
+// disabled={item.status !== "Delivered"}
 
 export default MyParcels;

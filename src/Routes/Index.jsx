@@ -19,6 +19,8 @@ import Reviews from "../components/Dashboard/Reviews/Reviews";
 import AdminRoute from "./AdminRoute";
 import DeliveryMenRoute from "./DeliveryMenRoute";
 import UpdateParcel from "../components/Dashboard/Update/UpdateParcel";
+import Payment from "../components/Dashboard/payment/Payment";
+import SectionTitle from "../components/SectionTitle/SectionTitle";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +73,10 @@ export const router = createBrowserRouter([
         path: "userProfile",
         element: <UserProfile></UserProfile>,
       },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
       // Noraml Users Routes
 
       // Admin Routes
@@ -109,6 +115,10 @@ export const router = createBrowserRouter([
       // Admin Routes
 
       // DeliveryMen Routes
+      {
+        path: "/dashboard",
+        element: <SectionTitle heading={"Welcome to Dashboard"}></SectionTitle>,
+      },
       {
         path: "deliveryList",
         element: (

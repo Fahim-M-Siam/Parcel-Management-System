@@ -9,11 +9,13 @@ import { MdOutlineRateReview } from "react-icons/md";
 import SectionTitle from "../components/SectionTitle/SectionTitle";
 import useAdmin from "../Hooks/useAdmin";
 import useDeliveryMen from "../Hooks/useDeliveryMen";
+import useAuth from "../Hooks/useAuth";
 
 // @ts-nocheck
 const DashboardLayout = () => {
+  const { user } = useAuth();
   const [isAdmin] = useAdmin();
-  const [isDeliveryMen] = useDeliveryMen();
+  const [isDeliveryMen] = useDeliveryMen(user?.email);
 
   return (
     <div className="flex">

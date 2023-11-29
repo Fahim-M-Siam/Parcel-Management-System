@@ -16,27 +16,28 @@ const Modal = ({ item, modalId, refetch }) => {
     const form = event.target;
     // inputvalues
     const deliverMenId = form.deliveryMenId.value;
-    const approxDate = form.approxDate.value;
+    const approxDateStringify = form?.approxDate?.value;
+    const approximateDate = JSON.stringify(approxDateStringify);
     const status = "On The Way";
-    console.log(approxDate);
+    console.log(approximateDate);
 
     const update = {
       deliverMenId,
-      approxDate,
+      approximateDate,
       status,
     };
 
-    // axiosSecure
-    //   .put(`/allBookings?id=${_id}`, update)
-    //   .then((res) => {
-    //     if (res.data.modifiedCount > 0) {
-    //       toast.success("Assigned");
-    //     }
-    //     refetch();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axiosSecure
+      .put(`/allBookings?id=${_id}`, update)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Assigned");
+        }
+        refetch();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>

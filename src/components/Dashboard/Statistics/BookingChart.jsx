@@ -3,7 +3,7 @@
 import ReactApexChart from "react-apexcharts";
 
 const BookingChart = ({ bookings }) => {
-  const countByDate = bookings.reduce((countMap, booking) => {
+  const countByDate = bookings?.reduce((countMap, booking) => {
     const { bookingDate } = booking;
     countMap[bookingDate] = (countMap[bookingDate] || 0) + 1;
     return countMap;

@@ -8,7 +8,7 @@ const useAllBookings = () => {
     queryKey: ["allBookings"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allBookings");
-      return res.data;
+      return res?.data;
     },
   });
   return [allBookings, refetch];

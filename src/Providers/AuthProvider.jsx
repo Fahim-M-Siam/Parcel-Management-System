@@ -20,6 +20,8 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const axiosPublic = useAxiosPublic();
 
+  console.log("Testting User", user);
+
   // google login
   const googleLogin = () => {
     setLoading(true);

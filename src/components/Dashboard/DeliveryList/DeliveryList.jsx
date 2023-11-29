@@ -5,6 +5,7 @@ import DeliveryListTable from "./DeliveryListTable";
 
 const DeliveryList = () => {
   const [deliveryBooking, refetch] = useDeliveryBookingList();
+
   return (
     <div>
       <SectionTitle heading={"All Delivery"}></SectionTitle>
@@ -14,7 +15,9 @@ const DeliveryList = () => {
             {/* head */}
             <thead>
               <tr>
-                <th></th>
+                <th>
+                  <h2>{deliveryBooking.length}</h2>
+                </th>
                 <th>Booked User Name</th>
                 <th>Receiver Name</th>
                 <th>Booked User Phone</th>

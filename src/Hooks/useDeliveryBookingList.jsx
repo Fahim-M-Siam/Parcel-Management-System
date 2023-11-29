@@ -6,12 +6,15 @@ const useDeliveryBookingList = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: deliveryBooking = [], refetch } = useQuery({
+    enabled: !!user?.email,
     queryKey: ["deliveryBooking", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/allDeliveryBookings?id=${user.email}`
-      );
-      return res.data;
+      if (user?.email) {
+        const res = await axiosSecure.get(
+          `/allDeliveryBookings?id=${user?.email}`
+        );
+        return res.data;
+      }
     },
   });
   return [deliveryBooking, refetch];

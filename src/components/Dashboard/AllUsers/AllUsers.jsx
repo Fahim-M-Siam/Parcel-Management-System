@@ -1,81 +1,61 @@
 // @ts-nocheck
-// import loadingAnimation from "../../../assets/loadingAnimation.json";
-// import { useEffect, useState } from "react";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../../assets/loadingAnimation.json";
 import useAllUsers from "../../../Hooks/useAllUsers";
+import useAuth from "../../../Hooks/useAuth";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import AllUsersTable from "./AllUsersTable";
-// import axios from "axios";
-// import Lottie from "lottie-react";
 
 const AllUsers = () => {
-  const [allUsers, refetch] = useAllUsers("User");
+  const { loading } = useAuth();
+  const [users, currentPage, setCurrentPage, pages, refetch] =
+    useAllUsers("User");
 
-  // const [isLoading, setIsLoading] = useState(true);
-  // const count = allUsers.length;
-  // const userPerPage = 5;
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const numberOfPages = Math.ceil(count / userPerPage);
-  // const pages = [...Array(numberOfPages).keys()];
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `http://localhost:5000/allUsers?type=User&page=${currentPage}&size=${userPerPage}`
-  //     )
-  //     .then((response) => {
-  //       setUsers(response.data);
-  //     })
-  //     .catch((error) => console.log(error))
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }, [currentPage]);
-
-  // // pagination features
-  // const handlePrevPage = () => {
-  //   if (currentPage > 0) {
-  //     setCurrentPage(currentPage - 1);
-  //   }
-  // };
-  // const handleNextPage = () => {
-  //   if (currentPage < pages.length - 1) {
-  //     setCurrentPage(currentPage + 1);
-  //   }
-  // };
+  // pagination features
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div>
       <SectionTitle heading={"All users"}></SectionTitle>
-      {/* {isLoading ? (
+      {loading ? (
         <>
           <div className="w-[400px] flex ml-96 items-center h-screen">
             <Lottie animationData={loadingAnimation}></Lottie>
           </div>
         </>
-      ) : ( */}
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th></th>
-                <th>User Name</th>
-                <th>Users Phone</th>
-                <th>Parcel Booked</th>
-                <th>Make Delivery Men</th>
-                <th>Make Admin</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allUsers?.map((user, index) => (
-                <AllUsersTable
-                  key={user._id}
-                  user={user}
-                  index={index}
-                  refetch={refetch}
-                ></AllUsersTable>
-              ))}
-              {/* <div className="text-center mt-20">
+      ) : (
+        <div>
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>User Name</th>
+                  <th>Users Phone</th>
+                  <th>Parcel Booked</th>
+                  <th>Make Delivery Men</th>
+                  <th>Make Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users?.map((user, index) => (
+                  <AllUsersTable
+                    key={user._id}
+                    user={user}
+                    index={index}
+                    refetch={refetch}
+                  ></AllUsersTable>
+                ))}
+                <div className="text-center mt-20">
                   <button
                     onClick={handlePrevPage}
                     className="btn btn-outline btn-sm"
@@ -102,12 +82,12 @@ const AllUsers = () => {
                   >
                     Next
                   </button>
-                </div> */}
-            </tbody>
-          </table>
+                </div>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      {/* )} */}
+      )}
     </div>
   );
 };

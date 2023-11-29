@@ -7,7 +7,7 @@ const useAllDelivered = () => {
     queryKey: ["allDelivered"],
     queryFn: async () => {
       const res = await axiosPublic.get("/allDelivered?status=Delivered");
-      return res.data;
+      return res?.data;
     },
   });
   return [allDelivered];
