@@ -9,15 +9,15 @@ const ReviewTwoModal = ({ i, item }) => {
   const [deliveryMenName, setDeliveryMenName] = useState();
   console.log(deliveryMenName);
 
-  // axiosPublic
-  //   .get(`/individualUser?email=${item?.deliveryMenId}`)
-  //   .then((res) => {
-  //     setDeliveryMenName(res.data.name);
-  //   });
-  // deliveryMenName,
+  axiosPublic
+    .get(`/individualUser?email=${item?.deliveryMenId}`)
+    .then((res) => {
+      setDeliveryMenName(res.data.name);
+    });
+
   const handleReview = (event) => {
     event.preventDefault();
-    const toastId = toast.loading("Registering..");
+    const toastId = toast.loading("Giving Review..");
     const form = event.target;
     // inputvalues
     const userName = form.userName.value;
@@ -25,16 +25,30 @@ const ReviewTwoModal = ({ i, item }) => {
     const deliveryMenId = form.deliveryMenId.value;
     const rating = parseInt(form.rating.value);
     const feedback = form.feedback.value.toLowerCase();
+    const reviewGivingDate = new Date();
+    const reviewDate = `${reviewGivingDate.getUTCFullYear()}-${(
+      reviewGivingDate.getUTCMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${reviewGivingDate
+      .getDate()
+      .toString()
+      .padStart(2, "0")}`;
     const reviewDetail = {
       userName,
       userImage,
       deliveryMenId,
       rating,
       feedback,
+      deliveryMenName,
+      reviewDate,
     };
-    console.log(reviewDetail);
 
-    // axiosPublic.post("/review");
+    axiosPublic.post("/review", reviewDetail).then((res) => {
+      if (res.data.insertedId) {
+        toast.success("Thank You For Your FeedBack", { id: toastId });
+      }
+    });
   };
   return (
     <>

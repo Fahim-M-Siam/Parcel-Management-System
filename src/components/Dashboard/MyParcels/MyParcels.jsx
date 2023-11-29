@@ -128,6 +128,7 @@ const MyParcels = () => {
                   <th>
                     <label
                       htmlFor={i + 1}
+                      disabled={item.status !== "Delivered"}
                       className="btn btn-outline btn-sm bg-[#FF715A] text-white"
                     >
                       <MdReviews />
@@ -148,7 +149,5 @@ const MyParcels = () => {
     </div>
   );
 };
-
-// disabled={item.status !== "Delivered"}
 
 export default MyParcels;

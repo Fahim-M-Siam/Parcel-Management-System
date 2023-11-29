@@ -59,7 +59,6 @@ const Register = () => {
           navigate("/login");
         })
         .catch((error) => {
-          toast.error("Registration failed", { id: toastId });
           console.log(error);
         });
 
