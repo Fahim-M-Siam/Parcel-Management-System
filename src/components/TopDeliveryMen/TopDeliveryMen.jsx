@@ -6,7 +6,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const TopDeliveryMen = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: topDeliveryMens = [], refetch } = useQuery({
+  const { data: topDeliveryMens = [] } = useQuery({
     queryKey: ["topDeliveryMens"],
     queryFn: async () => {
       const res = await axiosPublic.get("/topDeliveryMen");

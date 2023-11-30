@@ -21,8 +21,7 @@ const ReviewTwoModal = ({ i, item, refetch }) => {
   console.log(reviews);
   const ratings = reviews.map((review) => review.rating);
   const sum = ratings.reduce((accumulator, rating) => accumulator + rating, 0);
-  const averageRating = sum / ratings.length;
-  console.log(averageRating);
+  const avgRating = sum / ratings.length;
 
   axiosPublic
     .get(`/individualUser?email=${item?.deliveryMenId}`)
@@ -32,7 +31,7 @@ const ReviewTwoModal = ({ i, item, refetch }) => {
 
   axiosSecure
     .put(`/individualUser?email=${item?.deliveryMenId}`, {
-      averageRating: averageRating,
+      averageRating: avgRating,
     })
     .then((res) => {
       reviewRefetch();

@@ -16,6 +16,7 @@ const DashboardLayout = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
   const [isDeliveryMen] = useDeliveryMen(user?.email);
+  console.log(isDeliveryMen);
 
   return (
     <div className="flex">

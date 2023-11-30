@@ -11,9 +11,9 @@ const AllDeliveryMenTable = ({ deliveryMen, i }) => {
           </div>
         </div>
       </td>
-      <td>{deliveryMen.phoneNumber}</td>
-      <td>0</td>
-      <td>0</td>
+      <td>{deliveryMen?.phoneNumber}</td>
+      <td>{deliveryMen?.deliveredCount}</td>
+      <td>{deliveryMen?.averageRating}</td>
     </tr>
   );
 };

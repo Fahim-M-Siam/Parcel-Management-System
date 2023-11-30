@@ -262,7 +262,7 @@ const BookParcel = () => {
                     </span>
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     name="latitude"
                     placeholder="Delivery Address Latitude"
                     className="input input-bordered"
@@ -276,7 +276,7 @@ const BookParcel = () => {
                     </span>
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     name="longtitude"
                     placeholder="Delivery Address Longtitude"
                     className="input input-bordered"

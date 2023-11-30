@@ -15,8 +15,6 @@ const Register = () => {
   const { createUser, logOut } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
-  const [count, setCount] = useState(false);
-  const [data, setData] = useState();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +22,7 @@ const Register = () => {
     const form = event.target;
     // inputvalues
     const name = form.name.value.toLowerCase();
-    const email = form.email.value;
+    const email = form.email.value.toLowerCase();
     const phoneNumber = form.number.value;
     const type = form.type.value;
     const password = form.password.value;
@@ -45,7 +43,7 @@ const Register = () => {
     try {
       const imageData = await imageUpload(imageFile);
       const image = imageData?.data?.display_url;
-      const document = { name, email, phoneNumber, image, type, count: 0 };
+      const document = { name, email, phoneNumber, image, type };
 
       // creatingUser
       await createUser(email, password)

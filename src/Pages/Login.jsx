@@ -18,7 +18,7 @@ const Login = () => {
     const toastId = toast.loading("Logging In..");
     const form = event.target;
     // inputvalues
-    const email = form.email.value;
+    const email = form.email.value.toLowerCase();
     const password = form.password.value;
 
     // signIn
