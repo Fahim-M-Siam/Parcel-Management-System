@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params?.id}`),
+          fetch(`https://ship-ease-server.vercel.app/bookings/${params?.id}`),
       },
       {
         path: "userProfile",
