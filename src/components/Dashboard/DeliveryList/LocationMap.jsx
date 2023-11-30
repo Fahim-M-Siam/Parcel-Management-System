@@ -3,10 +3,10 @@
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const LocationMap = ({ latitude, longitude }) => {
+const LocationMap = ({ locationLatitude, locationLongtitude }) => {
   return (
     <MapContainer
-      center={[latitude, longitude]}
+      center={[locationLatitude, locationLongtitude]}
       zoom={13}
       style={{ height: "600px", width: "100%" }}
     >
@@ -14,7 +14,7 @@ const LocationMap = ({ latitude, longitude }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[latitude, longitude]}></Marker>
+      <Marker position={[locationLatitude, locationLongtitude]}></Marker>
     </MapContainer>
   );
 };

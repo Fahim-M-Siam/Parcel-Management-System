@@ -40,8 +40,6 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
     locationLatitude,
     locationLongtitude,
   } = deliveryBookingItem;
-  const latitude = 23.811056;
-  const longitude = 90.407608;
 
   // status changing to cancel
   const handleCancel = (_id) => {
@@ -122,8 +120,8 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
                 </div>
               </div>
               <LocationMap
-                latitude={latitude}
-                longitude={longitude}
+                locationLatitude={locationLatitude}
+                locationLongtitude={locationLongtitude}
               ></LocationMap>
             </div>
           </div>
