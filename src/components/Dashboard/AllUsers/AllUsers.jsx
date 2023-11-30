@@ -55,36 +55,35 @@ const AllUsers = () => {
                     refetch={refetch}
                   ></AllUsersTable>
                 ))}
-                <div className="text-center mt-20">
-                  <button
-                    onClick={handlePrevPage}
-                    className="btn btn-outline btn-sm"
-                  >
-                    Prev
-                  </button>
-                  {pages?.map((page) => (
-                    <button
-                      onClick={() => setCurrentPage(page)}
-                      className="btn btn-sm btn-outline mx-2"
-                      style={{
-                        backgroundColor:
-                          currentPage === page ? "black" : "initial",
-                        color: currentPage === page ? "white" : "initial",
-                      }}
-                      key={page}
-                    >
-                      {page + 1}
-                    </button>
-                  ))}
-                  <button
-                    onClick={handleNextPage}
-                    className="btn btn-outline btn-sm"
-                  >
-                    Next
-                  </button>
-                </div>
               </tbody>
             </table>
+            <div className="text-center mt-20">
+              <button
+                onClick={handlePrevPage}
+                className="btn btn-outline btn-sm"
+              >
+                Prev
+              </button>
+              {pages?.map((page) => (
+                <button
+                  onClick={() => setCurrentPage(page)}
+                  className="btn btn-sm btn-outline mx-2"
+                  style={{
+                    backgroundColor: currentPage === page ? "black" : "initial",
+                    color: currentPage === page ? "white" : "initial",
+                  }}
+                  key={page}
+                >
+                  {page + 1}
+                </button>
+              ))}
+              <button
+                onClick={handleNextPage}
+                className="btn btn-outline btn-sm"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       )}

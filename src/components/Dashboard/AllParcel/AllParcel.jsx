@@ -10,7 +10,7 @@ const AllParcel = () => {
     <div>
       <SectionTitle heading={"All Parcels"}></SectionTitle>
 
-      <div>
+      <div className="mb-20">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}

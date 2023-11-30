@@ -6,6 +6,7 @@ import Modal from "../../Modal";
 const AllParcelTable = ({ modalNumber, item, refetch }) => {
   const { userName, userNumber, bookingDate, requestedDate, price, status } =
     item;
+
   return (
     <tr>
       <th></th>

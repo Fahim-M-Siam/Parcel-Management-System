@@ -3,16 +3,40 @@
 import { useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
-const ReviewTwoModal = ({ i, item }) => {
+const ReviewTwoModal = ({ i, item, refetch }) => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [deliveryMenName, setDeliveryMenName] = useState();
-  console.log(deliveryMenName);
+
+  const { data: reviews = [], refetch: reviewRefetch } = useQuery({
+    queryKey: "reviews",
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/review?email=${item?.deliveryMenId}`);
+      return res?.data;
+    },
+  });
+  console.log(reviews);
+  const ratings = reviews.map((review) => review.rating);
+  const sum = ratings.reduce((accumulator, rating) => accumulator + rating, 0);
+  const averageRating = sum / ratings.length;
+  console.log(averageRating);
 
   axiosPublic
     .get(`/individualUser?email=${item?.deliveryMenId}`)
     .then((res) => {
-      setDeliveryMenName(res.data.name);
+      setDeliveryMenName(res?.data?.name);
+    });
+
+  axiosSecure
+    .put(`/individualUser?email=${item?.deliveryMenId}`, {
+      averageRating: averageRating,
+    })
+    .then((res) => {
+      reviewRefetch();
+      console.log(res?.data);
     });
 
   const handleReview = (event) => {
@@ -48,6 +72,7 @@ const ReviewTwoModal = ({ i, item }) => {
       if (res.data.insertedId) {
         toast.success("Thank You For Your FeedBack", { id: toastId });
       }
+      refetch();
     });
   };
   return (

@@ -1,27 +1,28 @@
+/* eslint-disable react/prop-types */
 // @ts-nocheck
-import deliveryMan from "../../../public/images/testTopDeliveryMen.png";
-const TopDeliveryCard = () => {
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
+const TopDeliveryCard = ({ deliveryMen }) => {
+  const { image, name, deliveredCount, averageRating } = deliveryMen;
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure className="px-10 pt-10">
-        <img src={deliveryMan} alt="Shoes" className="rounded-xl" />
+        <img src={image} alt="Shoes" className="rounded-xl h-[300px]" />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title">Fahim Mohammad Siam</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <p>Parcel Delivered: 10</p>
+        <h2 className="card-title">{name}</h2>
+        <p>Parcel Delivered: {deliveredCount}</p>
+
         <div>
           <div className="rating">
-            <input type="radio" name="rating-1" className="mask mask-star" />
-            <input
-              type="radio"
-              name="rating-1"
-              className="mask mask-star"
-              checked
+            <Rating
+              style={{ maxWidth: 180 }}
+              value={averageRating ? averageRating : 0}
+              readOnly
             />
-            <input type="radio" name="rating-1" className="mask mask-star" />
-            <input type="radio" name="rating-1" className="mask mask-star" />
-            <input type="radio" name="rating-1" className="mask mask-star" />
+            <span className="mt-2 ml-2 font-bold">
+              ({averageRating ? averageRating : 0})
+            </span>
           </div>
         </div>
       </div>

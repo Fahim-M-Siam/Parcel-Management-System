@@ -5,10 +5,29 @@ import { MdCancel } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import LocationMap from "./LocationMap";
+import useDeliveryBookingList from "../../../Hooks/useDeliveryBookingList";
+import useAuth from "../../../Hooks/useAuth";
 
 const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
-  console.log(deliveryBookingItem);
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [deliveryBooking] = useDeliveryBookingList();
+
+  const deliveredNumber = deliveryBooking?.filter(
+    (num) => num?.status === "Delivered"
+  );
+  const deliveredCount = deliveredNumber?.length;
+  console.log(deliveredCount);
+
+  axiosSecure
+    .put(`/topDeliveryMen?email=${user?.email}`, {
+      deliveredCount: deliveredCount,
+    })
+    .then((res) => {
+      refetch();
+      console.log(res?.data);
+    });
+
   const {
     _id,
     userName,
@@ -17,6 +36,7 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
     requestedDate,
     approximateDate,
     receiverNumber,
+    status,
     locationLatitude,
     locationLongtitude,
   } = deliveryBookingItem;
@@ -76,9 +96,11 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
       <td>{requestedDate}</td>
       <td>{approximateDate}</td>
       <td>{receiverNumber}</td>
+      <td>{status}</td>
       <th>
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
         <button
+          disabled={deliveryBookingItem?.status === "Canceled"}
           className="btn btn-outline btn-xs"
           onClick={() => document.getElementById("my_modal_4").showModal()}
         >
@@ -109,6 +131,7 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
       </th>
       <th>
         <button
+          disabled={deliveryBookingItem?.status === "Canceled"}
           onClick={() => handleCancel(_id)}
           className="btn btn-outline btn-xs"
         >
@@ -118,6 +141,10 @@ const DeliveryListTable = ({ deliveryBookingItem, refetch, index }) => {
       </th>
       <th>
         <button
+          disabled={
+            deliveryBookingItem?.status === "Delivered" ||
+            deliveryBookingItem?.status === "Canceled"
+          }
           onClick={() => handleDelivered(_id)}
           className="btn btn-outline btn-xs"
         >

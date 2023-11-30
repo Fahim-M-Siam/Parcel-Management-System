@@ -133,7 +133,11 @@ const MyParcels = () => {
                     >
                       <MdReviews />
                     </label>
-                    <ReviewTwoModal item={item} i={i}></ReviewTwoModal>
+                    <ReviewTwoModal
+                      refetch={refetch}
+                      item={item}
+                      i={i}
+                    ></ReviewTwoModal>
                   </th>
                   <th>
                     <button className="btn btn-outline btn-sm bg-[#FF715A] text-white">

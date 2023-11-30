@@ -3,13 +3,14 @@
 // @ts-nocheck
 
 import { MdEditNote } from "react-icons/md";
-import useAllUsers from "../Hooks/useAllUsers";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAllDeliveryMen from "../Hooks/useAllDeliveryMen";
 
 const Modal = ({ item, modalId, refetch }) => {
   const { _id } = item;
-  const [allUsers] = useAllUsers("DeliveryMen");
+  const [deliveryMens] = useAllDeliveryMen();
+
   const axiosSecure = useAxiosSecure();
   const handleAssign = (event) => {
     event.preventDefault();
@@ -19,7 +20,6 @@ const Modal = ({ item, modalId, refetch }) => {
     const approxDateStringify = form?.approxDate?.value;
     const approximateDate = JSON.stringify(approxDateStringify);
     const status = "On The Way";
-    console.log(approximateDate);
 
     const update = {
       deliverMenId,
@@ -69,7 +69,7 @@ const Modal = ({ item, modalId, refetch }) => {
                   <option disabled selected>
                     Choose Delivery Men
                   </option>
-                  {allUsers?.map((deliveryMen) => (
+                  {deliveryMens?.map((deliveryMen) => (
                     <option key={deliveryMen?._id} value={deliveryMen?.email}>
                       {deliveryMen?.name} - {deliveryMen?._id}
                     </option>

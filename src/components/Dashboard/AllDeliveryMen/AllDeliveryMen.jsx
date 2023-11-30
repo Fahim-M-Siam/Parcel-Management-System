@@ -1,10 +1,11 @@
 // @ts-nocheck
-import useAllUsers from "../../../Hooks/useAllUsers";
+import useAllDeliveryMen from "../../../Hooks/useAllDeliveryMen";
 import SectionTitle from "../../SectionTitle/SectionTitle";
 import AllDeliveryMenTable from "./AllDeliveryMenTable";
 
 const AllDeliveryMen = () => {
-  const [allUsers] = useAllUsers("DeliveryMen");
+  const [deliveryMens] = useAllDeliveryMen();
+
   return (
     <div>
       <SectionTitle heading={"All Delivery Men"}></SectionTitle>
@@ -22,7 +23,7 @@ const AllDeliveryMen = () => {
               </tr>
             </thead>
             <tbody>
-              {allUsers?.map((deliveryMen, i) => (
+              {deliveryMens?.map((deliveryMen, i) => (
                 <AllDeliveryMenTable
                   key={deliveryMen._id}
                   i={i}

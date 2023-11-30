@@ -11,7 +11,6 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const BookParcel = () => {
   const { user } = useAuth();
-  console.log(user);
   const [parcelWeight, setParcelWeight] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const axiosSecure = useAxiosSecure();

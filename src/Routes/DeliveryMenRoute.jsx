@@ -18,7 +18,6 @@ const DeliveryMenRoute = ({ children }) => {
       </div>
     );
   }
-  console.log("From route", user, isDeliveryMen);
   if (user && isDeliveryMen) {
     return children;
   }

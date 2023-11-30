@@ -15,6 +15,8 @@ const Register = () => {
   const { createUser, logOut } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
+  const [count, setCount] = useState(false);
+  const [data, setData] = useState();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,7 +45,8 @@ const Register = () => {
     try {
       const imageData = await imageUpload(imageFile);
       const image = imageData?.data?.display_url;
-      // const user = { name, email, image, type };
+      const document = { name, email, phoneNumber, image, type, count: 0 };
+
       // creatingUser
       await createUser(email, password)
         .then((user) => {
@@ -64,7 +67,7 @@ const Register = () => {
 
       // sendin user information to backend
       axiosPublic
-        .post("/users", { name, email, phoneNumber, image, type })
+        .post("/users", document)
         .then((response) => {
           console.log(response.data);
         })

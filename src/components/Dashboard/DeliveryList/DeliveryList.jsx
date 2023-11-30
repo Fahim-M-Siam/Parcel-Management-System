@@ -24,6 +24,7 @@ const DeliveryList = () => {
                 <th>Requested Delivery Date</th>
                 <th>Approximate Delivery Date</th>
                 <th>Receiver Phone</th>
+                <th>Parcel Status</th>
                 <th>Location</th>
                 <th>Cancel</th>
                 <th>Deliver</th>

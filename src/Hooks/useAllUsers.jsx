@@ -17,7 +17,6 @@ const useAllUsers = (userType) => {
 
     initialData: { users: [], userCount: 0 },
   });
-  console.log(userCount);
   const numberOfPages = Math.ceil(userCount / userPerPage);
   const pages = [...new Array(numberOfPages).keys()];
   return [users, currentPage, setCurrentPage, pages, refetch];
